@@ -1,0 +1,38 @@
+<p class="answer"><%= flash[:notice] %></p>
+
+<h1>Books</h1>
+<table>
+<thead>
+	<tr>
+		<td><section class="list-headline">Title</section></td>
+		<td><section class="list-headline">Body</section></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</thead>
+    <% @books.each do |book| %>
+<tbody>
+	<tr>
+	    <td class="book-deta"><%= book.title %></td>
+		<td class="book-deta"><%= book.body %></td>
+		<td class="book-deta"><%= link_to "Show", book_path(book) %></td>
+		<td class="book-deta"><%= link_to "Edit", edit_book_path(book) %></td>
+		<td class="book-deta"><%= link_to "Destroy", book_path(book), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+</tbody>
+<% end %>
+</table>
+
+<h2>New book</h2>
+<%= form_for(@book) do |f| %>
+
+  <p class="box-headline">Title</p>
+  <%= f.text_field :title %>
+
+  <p class="box-headline">Body</p>
+  <%= f.text_area :body %>
+
+  <div class="button"><%= f.submit 'Create Book' %></div>
+
+ <% end %>
